@@ -5,17 +5,18 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import kotlinx.android.synthetic.main.activity_main.*
-
+import com.joinstoriessdk.androidsdk.api.StoriesViewModel
 import com.joinstoriessdk.androidsdk.stories.StoryValue
 import com.joinstoriessdk.androidsdk.ui.StoryScaffoldListener
 import com.joinstoriessdk.androidsdk.ui.StoryViewConfig
-import com.joinstoriessdk.androidsdk.api.StoriesViewModel
+import com.joinstoriessdk.androidsdk.ui.player.StoryPlayerListener
+import kotlinx.android.synthetic.main.activity_main.*
 
 const val JOIN_TEAM = "join-showcase"
 const val JOIN_ALIAS = "widget-test-sdk"
 
-class MainActivity : AppCompatActivity(), StoryScaffoldListener {
+
+class MainActivity : AppCompatActivity(), StoryScaffoldListener, StoryPlayerListener {
 
     private lateinit var viewModel: StoriesViewModel
 
@@ -30,11 +31,15 @@ class MainActivity : AppCompatActivity(), StoryScaffoldListener {
                 // withLabel=false,
                 // typeface = Typeface.createFromAsset(assets, "fonts/Lato-BoldItalic.ttf"),
                 labelColor = Color.GRAY,
-                dividerWidth = 50,
-                innerBorderWidth = 2,
-                outterBorderWidth = 3,
-                innerBorderColor = intArrayOf(Color.WHITE),
-                outterBorderColor = intArrayOf(Color.RED, Color.BLUE)
+                thumbViewSpacing = 32,
+                loaderInnerViewWidth = 6,
+                loaderColors = intArrayOf(Color.RED, Color.BLUE),
+                loaderWidth = 8,
+                storyViewedIndicatorAlpha = 80,
+                storyViewedIndicatorColor = Color.GRAY,
+                thumbViewOverlayColor = Color.parseColor("#BB4C4C4C")
+
+
             )
             story_scaffold
                 .withConfig(storyViewConfig)
@@ -47,8 +52,11 @@ class MainActivity : AppCompatActivity(), StoryScaffoldListener {
         viewModel.getStories(JOIN_TEAM, JOIN_ALIAS)
     }
 
-    override fun onStorySelected(story: StoryValue) {
-        story_player.loadStory(story)
+    override fun onStorySelected(stories: List<StoryValue>, story: StoryValue, thumbView: View) {
+        story_player.loadStories(stories, story, thumbView, container_view, this)
     }
 
+    override fun onPlayerDismissed() {
+        story_scaffold.playerDismissed()
+    }
 }
