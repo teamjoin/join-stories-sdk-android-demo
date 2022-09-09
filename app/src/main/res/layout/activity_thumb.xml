@@ -8,27 +8,23 @@
     android:background="#000000"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btn_thumb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_thumb"
-        app:layout_constraintBottom_toTopOf="@id/btn_player_only"
+    <com.joinstoriessdk.androidsdk.ui.StoryScaffoldView
+        android:id="@+id/story_scaffold"
+        android:layout_width="0dp"
+        android:layout_height="144dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn_player_only"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/btn_player_only"
+    <com.joinstoriessdk.androidsdk.ui.player.StoryPlayer
+        android:id="@+id/story_player"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_thumb" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
