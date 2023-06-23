@@ -10,6 +10,6 @@ class DemoApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        JoinStories.init(JOIN_TEAM)
+        JoinStories.init(this, JOIN_TEAM)
     }
 }

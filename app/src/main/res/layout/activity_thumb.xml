@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#141414"
-    tools:context=".MainActivity">
+    android:background="#141414">
 
     <com.joinstoriessdk.androidsdk.ui.StoryScaffoldView
         android:id="@+id/story_scaffold"
@@ -15,17 +13,91 @@
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:labelColor="@android:color/holo_orange_dark"
+        app:thumbViewSpacing="10"
+        app:thumbViewOverlayColor="@color/cardview_dark_background"
+        app:loaderInnerViewWidth="4"
+        app:loaderWidth="4"
+        app:storyViewedIndicatorAlpha="80"
+        app:storyViewedIndicatorColor="@android:color/holo_blue_bright" />
+
+    <com.joinstoriessdk.androidsdk.ui.StoryScaffoldView
+        android:id="@+id/second_thumb_view"
+        android:layout_width="match_parent"
+        android:layout_height="144dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/story_scaffold" />
 
     <com.joinstoriessdk.androidsdk.ui.player.StoryPlayer
         android:id="@+id/story_player"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/white"
-        android:translationZ="16dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_skeletton_1"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="15dp"
+        android:text="A"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_skeletton_2"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_skeletton_2"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="15dp"
+        android:text="B"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_skeletton_3"
+        app:layout_constraintStart_toStartOf="@+id/btn_skeletton_1" />
+
+    <Button
+        android:id="@+id/btn_skeletton_3"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="15dp"
+        android:text="C"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_skeletton_4"
+        app:layout_constraintStart_toStartOf="@+id/btn_skeletton_2" />
+
+    <Button
+        android:id="@+id/btn_skeletton_4"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="15dp"
+        android:text="D"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_skeletton_5"
+        app:layout_constraintStart_toStartOf="@+id/btn_skeletton_3" />
+
+    <Button
+        android:id="@+id/btn_skeletton_5"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="15dp"
+        android:text="E"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btn_skeletton_4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
