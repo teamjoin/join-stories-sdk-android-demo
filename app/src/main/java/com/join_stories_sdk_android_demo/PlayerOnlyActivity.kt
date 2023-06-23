@@ -1,51 +1,35 @@
 package com.join_stories_sdk_android_demo
 
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.lifecycle.lifecycleScope
 import com.join_stories_sdk_android_demo.databinding.ActivityPlayerOnlyBinding
-import com.joinstoriessdk.androidsdk.JoinStories
 import com.joinstoriessdk.androidsdk.JoinStoriesListener
-import com.joinstoriessdk.androidsdk.config.JoinStoriesStandaloneConfig
+import com.joinstoriessdk.androidsdk.config.PlayerStandaloneAnimationOrigin
 import com.joinstoriessdk.androidsdk.config.PlayerVerticalAnchor
 import com.joinstoriessdk.androidsdk.ui.player.OnDismissState
 
 class PlayerOnlyActivity : AppCompatActivity(), JoinStoriesListener {
 
     private lateinit var binding: ActivityPlayerOnlyBinding
-
-    private val config = JoinStoriesStandaloneConfig(
-        joinAlias = "widget-sdk-test-standalone",
-        playerBackgroundColor = Color.parseColor("#BB000000"),
-        playerVerticalAnchor = PlayerVerticalAnchor.CENTER,
-        playerShowShareButton = false,
-        playerCornerRadius = 30f,
-        playerProgressBarThickness = 4,
-        playerProgressBarDefaultColor = "#FFFFFF66",
-        playerProgressBarFillColor = "#026eda",
-        playerProgressBarRadius = 8,
-        playerHorizontalMargin = 20
-    )
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPlayerOnlyBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         binding.btnLaunchPlayer.setOnClickListener {
             showLoader(true)
-            JoinStories.startPlayer(
-                config,
-                lifecycleScope,
-                binding.root,
-                binding.storyPlayer,
-                this
-            )
+
+            binding.storyPlayer.startPlayer("widget-sdk-test-standalone", timeout = 15)
         }
+
+        binding.storyPlayer.apply {
+            playerVerticalAnchor = PlayerVerticalAnchor.BOTTOM
+            joinStoriesListener = this@PlayerOnlyActivity
+            animationOrigin = PlayerStandaloneAnimationOrigin.TOP_RIGHT
+        }
+
     }
 
     override fun onStoryPlayerOnlyLoaded() {
@@ -53,13 +37,30 @@ class PlayerOnlyActivity : AppCompatActivity(), JoinStoriesListener {
     }
 
     override fun onStoryFetchError() {
-        Toast.makeText(this@PlayerOnlyActivity, R.string.error_player, Toast.LENGTH_SHORT)
+        Toast.makeText(this@PlayerOnlyActivity, "Error player", Toast.LENGTH_SHORT)
+            .show()
+        showLoader(false)
+    }
+
+    override fun onStoryFetchEmpty() {
+        Toast.makeText(this@PlayerOnlyActivity, "empty view", Toast.LENGTH_SHORT)
             .show()
         showLoader(false)
     }
 
     override fun onStoryPlayerOnlyDismissed(state: OnDismissState) {
         //You may add logic here
+        when (state) {
+            OnDismissState.OnDismissAuto -> {
+                Toast.makeText(this@PlayerOnlyActivity, "Dismiss auto", Toast.LENGTH_SHORT)
+                    .show()
+            }
+
+            OnDismissState.OnDismissManual -> {
+                Toast.makeText(this@PlayerOnlyActivity, "Dismiss manual", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
     }
 
     private fun showLoader(show: Boolean) {
