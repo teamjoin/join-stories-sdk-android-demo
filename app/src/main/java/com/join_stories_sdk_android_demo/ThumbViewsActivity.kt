@@ -10,6 +10,7 @@ import com.join_stories_sdk_android_demo.databinding.ActivityThumbBinding
 import com.joinstoriessdk.androidsdk.JoinStoriesAnalyticsCallback
 import com.joinstoriessdk.androidsdk.JoinStoriesEventType
 import com.joinstoriessdk.androidsdk.JoinStoriesListener
+import com.joinstoriessdk.androidsdk.StoryException
 import com.joinstoriessdk.androidsdk.config.PlayerStandaloneAnimationOrigin
 import com.joinstoriessdk.androidsdk.config.PlayerVerticalAnchor
 import com.joinstoriessdk.androidsdk.data.model.AnalyticsWidgetValue
@@ -68,8 +69,8 @@ class ThumbViewsActivity : AppCompatActivity(), JoinStoriesListener, JoinStories
         }
     }
 
-    override fun onStoryFetchError() {
-        super.onStoryFetchError()
+    override fun onStoryFetchError(e: StoryException) {
+        super.onStoryFetchError(e)
         Toast.makeText(
             this@ThumbViewsActivity,
             "Error thumb",
