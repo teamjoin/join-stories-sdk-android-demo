@@ -26,6 +26,10 @@ class MainActivity : AppCompatActivity() {
         binding.btnPlayerOnly.setOnClickListener {
             startActivity(Intent(this, PlayerOnlyActivity::class.java))
         }
+
+        binding.btnCard.setOnClickListener {
+            startActivity(Intent(this, CardViewActivity::class.java))
+        }
     }
     
 }

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.join_stories_sdk_android_demo.databinding.ActivityPlayerOnlyBinding
 import com.joinstoriessdk.androidsdk.JoinStoriesListener
+import com.joinstoriessdk.androidsdk.StoryException
 import com.joinstoriessdk.androidsdk.config.PlayerStandaloneAnimationOrigin
 import com.joinstoriessdk.androidsdk.config.PlayerVerticalAnchor
 import com.joinstoriessdk.androidsdk.ui.player.OnDismissState
@@ -36,10 +37,16 @@ class PlayerOnlyActivity : AppCompatActivity(), JoinStoriesListener {
         showLoader(false)
     }
 
-    override fun onStoryFetchError() {
+    override fun onStoryFetchError(e: StoryException) {
         Toast.makeText(this@PlayerOnlyActivity, "Error player", Toast.LENGTH_SHORT)
             .show()
         showLoader(false)
+    }
+
+    override fun onStoryFetchSuccess() {
+        super.onStoryFetchSuccess()
+        Toast.makeText(this@PlayerOnlyActivity, "Success", Toast.LENGTH_SHORT)
+            .show()
     }
 
     override fun onStoryFetchEmpty() {
