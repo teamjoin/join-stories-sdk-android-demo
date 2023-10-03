@@ -87,6 +87,25 @@ class ThumbViewsActivity : AppCompatActivity(), JoinStoriesListener, JoinStories
         ).show()
     }
 
+    override fun onStoryFetchSuccess() {
+        super.onStoryFetchSuccess()
+        Toast.makeText(
+            this@ThumbViewsActivity,
+            "fetch success",
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+    override fun onStoryLinkClick(link: String) {
+        super.onStoryLinkClick(link)
+        Toast.makeText(
+            this@ThumbViewsActivity,
+            "link clicked: $link",
+            Toast.LENGTH_SHORT
+        ).show()
+        binding.storyPlayer.dismiss()
+    }
+
     override fun onStoryPlayerOnlyDismissed(state: OnDismissState) {
         when (state) {
             OnDismissState.OnDismissAuto -> {
