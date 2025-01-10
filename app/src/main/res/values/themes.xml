@@ -13,11 +13,4 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-
-    <style name="Theme.JoinStoriesSDKDemo.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-
-    </style>
-    <style name="Theme.JoinStoriesSDKDemo.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.JoinStoriesSDKDemo.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
