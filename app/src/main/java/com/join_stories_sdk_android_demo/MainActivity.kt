@@ -1,8 +1,11 @@
 package com.join_stories_sdk_android_demo
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.join_stories_sdk_android_demo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -15,21 +18,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupViews()
+        val navView: BottomNavigationView = binding.navView
+
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+        val navController = navHostFragment.navController
+        navView.setupWithNavController(navController)
     }
 
-    private fun setupViews() {
-        binding.btnThumb.setOnClickListener {
-            startActivity(Intent(this, ThumbViewsActivity::class.java))
-        }
-
-        binding.btnPlayerOnly.setOnClickListener {
-            startActivity(Intent(this, PlayerOnlyActivity::class.java))
-        }
-
-        binding.btnCard.setOnClickListener {
-            startActivity(Intent(this, CardViewActivity::class.java))
-        }
-    }
-    
 }

@@ -1,8 +1,11 @@
 <resources>
-<string name="app_name">JoinStoriesSDKProject</string>
-<string name="btn_thumb">Avec bulles</string>
-<string name="btn_player_only">Sans bulles</string>
-<string name="btn_launch_player">Lancer le player</string>
-<string name="error_thumb">Une erreur est survenue lors du chargement des bulles</string>
-<string name="error_player">Une erreur est survenue lors du chargement du player</string>
+    <string name="app_name">JoinStoriesSDKProject</string>
+    <string name="btn_thumb">Avec bulles</string>
+    <string name="btn_player_only">Sans bulles</string>
+    <string name="btn_launch_player">Lancer le player</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="error_thumb">Une erreur est survenue lors du chargement des bulles</string>
+    <string name="error_player">Une erreur est survenue lors du chargement du player</string>
 </resources>
